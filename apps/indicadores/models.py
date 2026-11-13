@@ -65,12 +65,6 @@ class ValorIndicador(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=['indicador', 'fonte', 'localidade', 'periodo'],
-                name='unique_valor_indicador_fonte_localidade_periodo'
-            )
-        ]
         ordering = ['periodo__data_referencia', 'localidade__nome']
         verbose_name = 'Valor do indicador'
         verbose_name_plural = 'Valores dos indicadores'

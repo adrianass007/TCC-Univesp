@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 import sys
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': parsed.path.lstrip('/'),
         'USER': parsed.username or '',
-        'PASSWORD': parsed.password or '',
+        'PASSWORD': unquote(parsed.password or ''),
         'HOST': parsed.hostname or 'localhost',
         'PORT': str(parsed.port or 5432),
     }
