@@ -235,6 +235,7 @@ with transaction.atomic():
     for id_obs, id_ind, id_loc, id_per, valor, categoria in observacoes_origem:
         metadados = {
             "id_observacao_obi": id_obs,
+            "simulado": False,
         }
 
         if categoria is not None:
