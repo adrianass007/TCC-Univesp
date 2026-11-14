@@ -17,10 +17,21 @@ class Indicador(models.Model):
     ]
 
     nome = models.CharField(max_length=200)
+    nome_curto = models.CharField(max_length=120, blank=True)
     descricao = models.TextField(blank=True)
     categoria = models.CharField(max_length=40, choices=CATEGORIA_CHOICES, default='outros')
     unidade_medida = models.CharField(max_length=50)
     periodicidade = models.CharField(max_length=50, blank=True)
+    codigo_fonte = models.CharField(max_length=100, blank=True)
+    abrangencia = models.CharField(max_length=200, blank=True)
+    url_documentacao = models.URLField(blank=True)
+    fonte = models.ForeignKey(
+        FonteDados,
+        on_delete=models.PROTECT,
+        related_name='indicadores',
+        blank=True,
+        null=True,
+)
     ativo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
